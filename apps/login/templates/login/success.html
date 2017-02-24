@@ -6,7 +6,71 @@
         <title>Success</title>
     </head>
     <body>
-        <p>Welcome {{user.first_name}}</p>
+        <a href='/home'>Home</a>
         <a href='/logout'>Log out</a>
+        <p>Welcome {{user.name}}</p>
+        <div>
+            {% if scheduled_trips %}
+            <h3>Your Scheduled Trips</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Destination</th>
+                    <th>Travel Start Date</th>
+                    <th>Travel End Date</th>
+                    <th>Plan</th>
+                </tr>
+                </thead>
+                {% for scheduled in scheduled_trips %}
+                <tbody>
+                <tr>
+                    <td>
+                        <form action='/showDestination' method='post'>
+                            {% csrf_token %}
+                            <input type="hidden" name="destination.id" value="{{destination.id}}">
+                            <label> <input type="submit" value="{{scheduled.destination}}"></label>
+                        </form>
+                    </td>
+                    <td>{{scheduled.start_date}}</td>
+                    <td>{{scheduled.end_date}}</td>
+                    <td>{{scheduled.plan}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+
+        <div>
+            {% if users_trips %}
+            <h3>Other User's Travel Plans</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Destination</th>
+                    <th>Travel Start Date</th>
+                    <th>Travel End Date</th>
+                    <th>Do you want to join</th>
+                </tr>
+                </thead>
+                {% for scheduled in scheduled_trips %}
+                <tbody>
+                <tr>
+                    <td>{{scheduled.name}}</td>
+                    <td>{{scheduled.destination}}</td>
+                    <td>{{scheduled.start_date}}</td>
+                    <td>{{scheduled.end_date}}</td>
+                    <td>
+                        <form action='/addTrip' method='post'>
+                            {% csrf_token %}
+                            <input type="hidden" name="trip_id" value="{{trip.id}}">
+                            <label> <input type="submit" value="Join"></label>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
     </body>
 </html>
