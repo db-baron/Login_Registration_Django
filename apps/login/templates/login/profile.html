@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Home Page</title>
+    </head>
+    <body>
+        <a href='/logout'>Log out</a>
+        <h2>Hello {{user.name}}</h2>
+        <h4>Here is a list of your friends:</h4>
+        <div>
+            {% if user.friends %}
+            <h3>Your Friends</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Alias</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                {% for friend in friends %}
+                <tbody>
+                <tr>
+                    <td>
+                        <form action='/showOther' method='post'>
+                            {% csrf_token %}
+                            <input type="hidden" name="destination.id" value="{{friend.id}}">
+                            <label> <input type="submit" value="{{friend.alias}}"></label>
+                        </form>
+                    </td>
+                    <td>{{friend.name}}</td>
+                    <td><a href='/logout'>View Profile</a> <a href='/logout'>Remove as Friend</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+        <div>
+            {% if others %}
+            <h3>Other users not in friend list</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                {% for other in others %}
+                <tbody>
+                <tr>
+                    <td>{{other.name}}</td>
+                    <td>
+                        <form action='/addFriend' method='post'>
+                            {% csrf_token %}
+                            <input name="addFriend" value="{{other.id}}">
+                            <label> <input type="submit" value="Add as Friend"></label>
+                        </form>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        {% endif %}
+    </body>
+</html>

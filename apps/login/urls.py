@@ -5,10 +5,8 @@ urlpatterns = [
     url(r'^$', views.index),
     url(r'^registration$', views.registration),
     url(r'^login$', views.login),
-    url(r'^success$', views.success),
-    url(r'^showDestination/(?P<id>\d+)$', views.showDestination),
-    url(r'^addTrip$', views.addTrip),
-    url(r'^showTrip$', views.showTrip),
-    url(r'^home$', views.home),
-    url(r'^logout$', views.logout)
+    url(r'^profile$', views.profile),
+    # url(r'^addFriend/(?P<id>\d+)$', views.addFriend),
+    url(r'^addFriend$', views.addFriend),
+    url(r'^logout$', views.logout),
 ]

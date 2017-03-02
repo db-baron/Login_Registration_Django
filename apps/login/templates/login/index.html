@@ -9,7 +9,7 @@
     <script src="{%static 'login/js/main.js'%}"></script>
   </head>
   <body>
-    <h1>Welcome!</h1>
+    <h1>Welcome to Friends!</h1>
     {%if messages%}
     <ul>
       {%for msg in messages%}
@@ -25,11 +25,15 @@
           <tbody>
             <tr>
               <td>Name:</td>
-              <td><input type='text' name='name' default='Name'/></td>
+              <td><input type='text' name='name'></td>
             </tr>
             <tr>
-              <td>Username:</td>
-              <td><input type='text' name='user_name' default='Username'/></td>
+              <td>Alias:</td>
+              <td><input type='text' name='alias'></td>
+            </tr>
+            <tr>
+              <td>Email:</td>
+              <td><input type='text' name='email'/></td>
             </tr>
             <tr>
               <td>Password:</td>
@@ -41,6 +45,10 @@
               <td>Confirm Password:</td>
               <td><input type='password' name='confirm'/></td>
               <!-- <td><input type='text' name='confirm' default=''/></td> -->
+            </tr>
+            <tr>
+              <td>Date of Birth:</td>
+              <td><input type='text' name='dob'/></td>
             </tr>
             <tr>
               <td></td>
@@ -59,8 +67,8 @@
         <table>
           <tbody>
             <tr>
-              <td>Username:</td>
-              <td><input type='text' name='user_name' /></td>
+              <td>Alias:</td>
+              <td><input type='text' name='alias' /></td>
             </tr>
             <tr>
               <td>Password:</td>
