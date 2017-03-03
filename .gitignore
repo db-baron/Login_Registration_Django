@@ -1,3 +1,5 @@
-*.pyc
+.pyc
 venv/
+.sqlite3
+djangoEnv
 .DS_Store
